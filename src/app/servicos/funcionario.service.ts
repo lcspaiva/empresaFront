@@ -17,6 +17,7 @@ export class FuncionarioService {
               private location:Location,
               private snackBar: MatSnackBar) { }
 
+  //dados para exibir o alert
   mensagem(msg: string): void {
     this.snackBar.open(msg, "X", {
       duration: 3000,
@@ -26,16 +27,19 @@ export class FuncionarioService {
     })
   }//
 
+  //lista todos os funcionario que estão associados a um determinado cargo
   listaFuncs(id_cargo:String):Observable<Funcionario[]>{
     const url = `${this.baseUrl}/funcionario/busca-cargo/${id_cargo}`
     return this.http.get<Funcionario[]>(url)
   }
 
+  //faz o cadastro de um funcionario e já o vincula a um cargo
   cadastrarFuncComCargo(funcionario:Funcionario, id_cargo:String):Observable<Funcionario>{
     const url = `${this.baseUrl}/funcionario/cargo/${id_cargo}`
     return this.http.post<Funcionario>(url, funcionario)
   }
 
+  //faz o cadastro de um funcionario sem um cargo
   cadastraFuncSemCargo(funcionario:Funcionario):Observable<Funcionario>{
     const url = `${this.baseUrl}/funcionario`
     return this.http.post<Funcionario>(url, funcionario)
@@ -53,36 +57,43 @@ export class FuncionarioService {
     return this.http.get<Funcionario>(url)
   }
 
+  //deletar um cargo
   deletarFunc(id_funcionario:String):Observable<void>{
     const url = `${this.baseUrl}/funcionario/${id_funcionario}`
     return this.http.delete<void>(url)
   }
 
+  //edita um funcionario
   editarFunc(id_funcionario:String, funcionario:Funcionario):Observable<void>{
     const url = `${this.baseUrl}/funcionario/${id_funcionario}`
     return this.http.put<void>(url, funcionario)
   }
 
+  //busca um funcionario e o traz junto de seu respectivo cargo
   buscarFuncionariosComCargo():Observable<Object[]>{
     const url = `${this.baseUrl}/funcionario-cargo`
     return this.http.get<Object[]>(url)
   }
 
+  //tira um funcionario de um cargo
   deixarFuncionarioSemCargo(id_funcionario:any, funcionario:Funcionario):Observable<void>{
     const url = `${this.baseUrl}/funcionario/deixarSemCargo/${id_funcionario}`
     return this.http.put<void>(url, funcionario);
   }
 
+  //vincula um cargo a um funcionario
   atribuirCargoFuncionario(id_funcionario:any, cargo: Cargo):Observable<void>{
     const url = `${this.baseUrl}/funcionario/inserirCargo/${id_funcionario}`
     return this.http.put<void>(url,cargo)
   }
 
+  //busca um funcionario pelo seu nome
   buscarFuncionarioPeloNome(nome_func:String):Observable<Funcionario>{
     const url = `${this.baseUrl}/funcionario/bucarPeloNome/${nome_func}`
     return this.http.get<Funcionario>(url)
   }
 
+  //volta para a pagina anterior
   voltar(){
     this.location.back()
   }

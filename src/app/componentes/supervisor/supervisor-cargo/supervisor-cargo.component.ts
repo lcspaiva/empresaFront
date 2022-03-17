@@ -17,6 +17,7 @@ export class SupervisorCargoComponent implements OnInit {
   // usado para puxar os dados do supervisor
   id_supervisor: any = ""
 
+  //modelo do obj cargo
   cargo: Cargo = {
     id_cargo: '',
     car_nome: '',
@@ -34,6 +35,7 @@ export class SupervisorCargoComponent implements OnInit {
   //sera utilizada para listar no select na hora de escolher um supervisor para aquele cargo
   cargosLivres: Cargo[] = []
 
+  //modelo do obj supervisor
   supervisor: Supervisor = {
     id_supervisor: '',
     su_nome: '',
@@ -71,6 +73,7 @@ export class SupervisorCargoComponent implements OnInit {
     })
   }
 
+  //busca os dados do cargo somente se ele existir
   buscarDadosCargo(){
       if(this.idCargo == undefined){
         this.isCargo = false
@@ -97,6 +100,7 @@ export class SupervisorCargoComponent implements OnInit {
     console.log(this.cargo)
   }
 
+  //faz a vinculação entre o cargo e um supervisor
   associarCargoSupervisor(){
     this.cargoService.atribuirSupervisor(this.cargo, this.cargo.id_cargo, this.supervisor.id_supervisor).subscribe({
       complete: () => {
@@ -107,6 +111,7 @@ export class SupervisorCargoComponent implements OnInit {
     })
   }
 
+  //remove o vinculo entro supervisor e seu cargo
   deixarCargoSemSupervisor(){
     this.cargoService.deixarCargoSemSupervisor(this.cargo, this.cargo.id_cargo, this.supervisor.id_supervisor).subscribe({
       complete: () => {this.supervisorService.mensagem("Atenção! A partir de agora o cargo não está sendo supervionado")

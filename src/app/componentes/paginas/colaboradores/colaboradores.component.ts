@@ -11,7 +11,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ColaboradoresComponent implements OnInit {
 
+  // guardará os objetos referentes ao funcionario que constarem na base de dados
   funcionarios: any = []
+
+  // guardará os objetos referentes ao funcionario que constarem na base de dados
   supervisores: any = []
 
   constructor(private funcionarioService:FuncionarioService,
@@ -22,6 +25,7 @@ export class ColaboradoresComponent implements OnInit {
     this.listarSupervisores()
   }
 
+  //lista todos os funcionarios que constarem na base de dados
   listarFuncionarios(){
     this.funcionarioService.registroFuncionarios().subscribe(resposta => {
       resposta.forEach((func: any) => {
@@ -41,6 +45,7 @@ export class ColaboradoresComponent implements OnInit {
     })
   }
 
+  //lista todos os supervisores que constarem na base de dados
   listarSupervisores(){
     this.supervisorService.supevisorRegistro().subscribe(resposta => {
 

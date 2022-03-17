@@ -20,6 +20,7 @@ export class CadastrarSupervisorComponent implements OnInit {
   //receberá a foto que foi upada
   foto:any
 
+  //modelo dos dados do obj supervisor
   supervisor: Supervisor = {
     id_supervisor: '',
     su_nome: '',
@@ -33,6 +34,7 @@ export class CadastrarSupervisorComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  //faz o cadastro do supervisor
   cadastrarSupervisor(){
     this.supervisorService.cadastrarSupervisor(this.supervisor).subscribe(resposta => {
       let supervisorCadastrado:Supervisor = resposta
@@ -42,6 +44,7 @@ export class CadastrarSupervisorComponent implements OnInit {
     })
   }//cadastrarSupervisor
 
+  //faz o upload da foto e vincula ao supervisor que está sendo cadastrado no momento
   uparFoto(event:any){
     if(event.target.files && event.target.files[0]){
       let dest = 1

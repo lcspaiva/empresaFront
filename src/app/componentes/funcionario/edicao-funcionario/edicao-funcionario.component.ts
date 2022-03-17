@@ -71,6 +71,7 @@ export class EdicaoFuncionarioComponent implements OnInit {
     })
   }
 
+  //exibe os dados de um cargo mediante seu id
   pegaCargo(){
     this.cargoService.mostrarUmCargo(this.id_cargo).subscribe(resposta => {
       this.cargo = resposta;
@@ -85,6 +86,7 @@ export class EdicaoFuncionarioComponent implements OnInit {
     })
   }
 
+  //envia os novos dados para serem perserverados no sistema
   editarFunc(){
     this.funcionarioService.editarFunc(this.func.id_funcionario, this.func).subscribe({
       complete:()=>{
@@ -98,6 +100,7 @@ export class EdicaoFuncionarioComponent implements OnInit {
     })
   }
 
+  //lista todos os cargos existentes no sistema
   listaCargos(){
     this.cargoService.mostrarTodosCargos().subscribe((resultado) => {
       resultado.forEach((val:any[])=>{
@@ -112,6 +115,7 @@ export class EdicaoFuncionarioComponent implements OnInit {
   )}
 
 
+  //faz o upload da foto no sistema
   uparFoto(event:any){
     if(event.target.files && event.target.files[0]){
       let dest = 2

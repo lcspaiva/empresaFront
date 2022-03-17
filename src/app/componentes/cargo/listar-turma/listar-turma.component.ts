@@ -24,6 +24,7 @@ export class ListarTurmaComponent implements OnInit {
     this.cargos = []
   }
 
+  //função que faz a requisição de todos os registros da tabela de cargos e as coloca em um objeto que será utilizado no front para serem exibidos na página
   mostrarTodosCargos(){
     this.cargoService.mostrarTodosCargos().subscribe(resp =>{
       //this.cargos = resp;
@@ -55,11 +56,14 @@ export class ListarTurmaComponent implements OnInit {
       });
     } )
   }
+
+  //essa função pega o id do registro que teve o ícone de lixeira clicado.
+  //esse id é usado para fazer a exclusão em um segundo momento.
   pegaIdExclusao(id:any){
     this.idExclusao = id
   }
 
-  //fazer o cargo colocar todos os funcionario dele pra null
+  //função que dispara a requisição ao back para que ele faça a exclusão de um registro cujo id é fornecido
   excluirCargo(){
     console.log("Vou excluir o cargo:" + this.idExclusao)
     this.cargoService.excluirCargo(this.idExclusao).subscribe({

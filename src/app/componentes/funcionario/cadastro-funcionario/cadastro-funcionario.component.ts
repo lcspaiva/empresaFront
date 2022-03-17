@@ -14,18 +14,26 @@ import { Location } from '@angular/common';
 })
 export class CadastroFuncionarioComponent implements OnInit {
 
+  //guarda o caminho da foto que foi anexada
   foto: any
+
+  //guarda o id do cargo
   id_cargo: String = ''
+
+  //determina se o funcionario já foi cadastrado, utilizado para ativar o envio da foto
   isFuncionarioCadastrado: boolean = false
+
+  //guarda o id do funcionario que acabou de ser inserido no sistema, será utilizado para vincular a foto ao seu registro no banco de dados
   idFuncionarioCadastrado: any
 
+  //modelo do objeto do funcionário
   func: Funcionario = {
     id_funcionario: '',
     func_cidade: '',
     func_nome:'',
     func_foto: ''
   }
-
+  //modelo do objeto do cargo
   cargo: Cargo = {
     id_cargo: '',
     car_nome: '',
@@ -44,12 +52,14 @@ export class CadastroFuncionarioComponent implements OnInit {
     this.mostraCargo()
   }
 
+  //busca as informações de um cargo dado o seu id
   mostraCargo(){
     this.cargoService.mostrarUmCargo(this.id_cargo).subscribe(resposta => {
       this.cargo = resposta
     })
   }
 
+  //faz o cadastro de um funcionario ao sistema
   cadastrarFuncionario(){
     this.funcionarioService.cadastrarFuncComCargo(this.func, this.id_cargo).subscribe(resposta => {
       let funcionarioCadastrado: Funcionario = resposta
@@ -59,6 +69,7 @@ export class CadastroFuncionarioComponent implements OnInit {
     })
   }//cadastrar Funcionario
 
+  //faz o upload da foto no sistema
   uparFoto(event:any){
     if(event.target.files && event.target.files[0]){
       let dest = 2

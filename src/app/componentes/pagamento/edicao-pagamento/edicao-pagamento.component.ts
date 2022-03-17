@@ -11,9 +11,13 @@ import { Pagamento } from 'src/app/modelos/pagamentoModel';
 })
 export class EdicaoPagamentoComponent implements OnInit {
 
+  //guarda o id de um funcionario
   id_funcionario: any
+
+  //guarda o codigo do pagamento
   codigo: any
 
+  //modelo do obj pagamento
   pagamento: Pagamento = {
     codigo: '',
     pa_descricao: '',
@@ -32,6 +36,7 @@ export class EdicaoPagamentoComponent implements OnInit {
     this.preencheCampos()
   }
 
+  //puxa os dados de um pagamento do banco de dados por meio do seu código
   preencheCampos(){
     this.pagamentoService.mostraUmPagamento(this.codigo).subscribe(resposta => {
       this.pagamento = resposta
@@ -39,6 +44,7 @@ export class EdicaoPagamentoComponent implements OnInit {
     })
   }
 
+  //edita os dados de um pagamento ao enviar o obj contendo os novos dados. Esses dados serão enviados e salvos no banco de dados
   editarPagamento(){
     this.pagamentoService.editarPagamento(this.codigo, this.id_funcionario, this.pagamento).subscribe({
       complete: () => {this.pagamentoService.mensagem("Pagamento editado com sucesso"),
@@ -47,6 +53,7 @@ export class EdicaoPagamentoComponent implements OnInit {
     })
   }
 
+  //função para voltar à página anterior
   voltarPag(){
     this.location.back()
   }

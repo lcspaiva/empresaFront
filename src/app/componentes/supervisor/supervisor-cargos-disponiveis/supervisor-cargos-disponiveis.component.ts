@@ -13,17 +13,26 @@ import { Location } from '@angular/common';
 })
 export class SupervisorCargosDisponiveisComponent implements OnInit {
 
+  //id do cargo
   id_cargo: any
+
+  //guarda o objeto que foi selecionado no select
   superEscolhido: any
+
+  //armazena os objetos dos supervisores que não possuem nenhum cargo associado
   supervisoresLivres: Supervisor[] = []
+
+  //determina se o cargo possui algum supervisor vinculado a ele
   existeSupervisor:boolean = false
 
+  //obj do modelo cargo
   cargo: Cargo = {
     id_cargo: '',
     car_nome: '',
     car_descricao: ''
   }
 
+  //obj do modelo supervisor
   supervisor: Supervisor = {
     id_supervisor: '',
     su_nome: '',
@@ -64,12 +73,14 @@ export class SupervisorCargosDisponiveisComponent implements OnInit {
     })
   }
 
+  //traz do banco os supervisores que não possuem nenhum cargo associado
   buscarSuperLivres(){
     this.supervisorService.buscarSupervisoresLivres().subscribe(resposta => {
       this.supervisoresLivres = resposta
     })
   }
 
+  //vincula um cargo a um supervisor
   atribuirCargo(){
     this.supervisorService.buscarUmSupervisor(this.supervisor.id_supervisor).subscribe(resposta => {
       this.supervisor = resposta
@@ -94,6 +105,7 @@ export class SupervisorCargosDisponiveisComponent implements OnInit {
     this.supervisor = this.superEscolhido
   }
 
+  //remove vinculo entre supervisor e cargo
   deixarCargoSemSupervisor(){
     this.cargoService.deixarCargoSemSupervisor(this.cargo, this.id_cargo, this.supervisor.id_supervisor).subscribe({
       complete: () => {

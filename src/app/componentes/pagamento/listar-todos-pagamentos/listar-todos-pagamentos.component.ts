@@ -19,12 +19,14 @@ export class ListarTodosPagamentosComponent implements OnInit {
     this.listarTodosPagamentos()
   }
 
+  //lista todos os pagamentos que constam na base de dados
   listarTodosPagamentos(){
     this.pagamentoService.mostraTodosPagamentos().subscribe(resposta => {
       this.pagamentos = resposta
     })
   }
 
+  //efetua o pagamento de uma fatura
   efetuarPagamento(pagamento:Pagamento, codigo:any){
     this.pagamentoService.efetuarPagamento(pagamento, codigo).subscribe({
       complete: () => {this.pagamentoService.mensagem("pagamento realizado")
@@ -33,6 +35,7 @@ export class ListarTodosPagamentosComponent implements OnInit {
     })
   }
 
+  //efetua o cancelamento de uma fatura
   cancelarPagamento(pagamento:Pagamento, codigo:any){
     this.pagamentoService.cancelarPagamento(pagamento, codigo).subscribe({
       complete: () => {this.pagamentoService.mensagem("pagamento realizado")
@@ -41,10 +44,12 @@ export class ListarTodosPagamentosComponent implements OnInit {
     })
   }
 
+  //captura o id do elemento que foi clicado
   pegaIdExclusao(codigo:any){
     this.codigoExclusao = codigo
   }
 
+  //faz o pedido ao back-end para excluir o pagamento da base de dados
   excluirPagamento(){
     this.pagamentoService.deletarPagamento(this.codigoExclusao).subscribe({
       complete: () => {this.pagamentoService.mensagem("Pagamento excluído")
@@ -54,6 +59,7 @@ export class ListarTodosPagamentosComponent implements OnInit {
     })
   }
 
+  //edita os dados de um pagamento
   editarPagamento(codigo:any){
     this.pagamentoService.fetchFuncByCod(codigo).subscribe(resposta => {
       this.router.navigate([`/editarPagamento/${codigo}/${resposta}`])

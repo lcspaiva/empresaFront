@@ -13,10 +13,13 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class EditarSupervisorComponent implements OnInit {
 
+  //guarda o id do supervisor que será editado
   id_supervisor: any
 
+  //guarda o caminho da foto
   foto:any = ''
 
+  //modelo do obj supervisor
   supervisor:Supervisor = {
     id_supervisor: '',
     su_nome: '',
@@ -35,23 +38,14 @@ export class EditarSupervisorComponent implements OnInit {
     this.mostraSupervisor()
   }
 
-  sanitize(url:any){
-    console.log(url.replaceAll("\\", "/"))
-    return this.sanitizer.bypassSecurityTrustUrl(url.replaceAll("\\", "/"));
-  }
-
-  limpaPath(url:String){
-    //D:\Estudos\SoulCode\Extensão Java\empresaFront\src\assets\fotos\
-    console.log(url.slice(64))
-    return "assets/fotos/" + url.slice(64)
-  }
-
+  //traz os dados do supervisor em função do seu id
   mostraSupervisor(){
     this.supervisorService.buscarUmSupervisor(this.id_supervisor).subscribe(resposta => {
       this.supervisor = resposta;
     })
   }
 
+  //envia os novos dados do supervisor para serem salvos no banco
   editarFunc(){
     this.supervisorService.editarSupervisor(this.id_supervisor, this.supervisor).subscribe({
       complete: () => {this.supervisorService.mensagem("supervisor editado")
@@ -60,10 +54,12 @@ export class EditarSupervisorComponent implements OnInit {
     })
   }
 
+  //volta para a página anterior
   voltarPag(){
     this.location.back()
   }
 
+  //faz o upload da foto já vinculada ao supervisor em questão
   uparFoto(event:any){
     if(event.target.files && event.target.files[0]){
       let dest = 1

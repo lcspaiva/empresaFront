@@ -13,7 +13,10 @@ import { Location } from '@angular/common';
 })
 export class AtribuirFuncCargoComponent implements OnInit {
 
+  //guarda qual o id do objeto que está sendo trabalhado
   id_funcionario: any = ''
+
+  //guarda qual o id do cargo do objeto que está sendo trabalhado (caso ele possua um)
   id_cargo: any = ''
 
   cargosDisponiveis: Cargo[] = []
@@ -24,6 +27,7 @@ export class AtribuirFuncCargoComponent implements OnInit {
   //determina se o funcionario já possui um cargo
   isVinculado:boolean = false
 
+  //modelo do objeto
   funcionario: Funcionario = {
     id_funcionario: '',
     func_nome: '',
@@ -31,6 +35,7 @@ export class AtribuirFuncCargoComponent implements OnInit {
     func_foto: ''
   }
 
+  //modelo do objeto
   cargo: Cargo = {
     id_cargo: '',
     car_nome: '',
@@ -52,12 +57,14 @@ export class AtribuirFuncCargoComponent implements OnInit {
     this.mostrarCargosDisponiveis()
   }
 
+  //traz os dados referentes a um usuário determinado por um id
   buscaFuncionario(){
     this.funcionarioService.buscaFunc(this.id_funcionario).subscribe(resposta => {
       this.funcionario = resposta
     })
   }
 
+  ////traz os dados referentes a um cargo determinado por um id (caso ele exista)
   buscaCargo(){
     if(this.id_cargo != '0'){
       this.cargoService.mostrarUmCargo(this.id_cargo).subscribe(resposta => {
@@ -67,10 +74,12 @@ export class AtribuirFuncCargoComponent implements OnInit {
     }
   }
 
+  //exibe os dados do cargo na página (caso possua)
   mostrarCargo(){
     this.cargo = this.cargoEscolhido
   }
 
+  //exibe todos os cargos que não possuem nenhum supervisor relacionado
   mostrarCargosDisponiveis(){
     this.cargoService.mostrarTodosCargos().subscribe(resposta => {
       // this.cargosDisponiveis = resposta
@@ -87,6 +96,7 @@ export class AtribuirFuncCargoComponent implements OnInit {
     })
   }
 
+  //faz a atribuição do funcionario focado em um cargo listado
   atribuirCargo(){
     //funcionario
     //cargoescolhido
@@ -100,6 +110,7 @@ export class AtribuirFuncCargoComponent implements OnInit {
     })
   }
 
+  //desvincula o funcionário tema da página de seu presente cargo (caso possua um cargo)
   deixarFuncionarioSemCargo(){
     this.funcionarioService.deixarFuncionarioSemCargo(this.id_funcionario, this.funcionario).subscribe({
       complete: () => { this.funcionarioService.mensagem("Funcioonário liberado do cargo")

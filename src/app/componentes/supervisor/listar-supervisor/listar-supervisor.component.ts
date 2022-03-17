@@ -9,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListarSupervisorComponent implements OnInit {
 
+  //guarda os objetos dos supervisores
   supervisores: any = []
 
   //guarda o id do supervisor que foi selecionado para exclusão
@@ -20,6 +21,7 @@ export class ListarSupervisorComponent implements OnInit {
     this.buscaTodosSupervisores()
   }
 
+  //busca todos os supervisores cadastrados no banco
   buscaTodosSupervisores(){
     this.supervisorService.buscarTodosSupervisores().subscribe((resposta) => {
       this.supervisores = []
@@ -53,10 +55,12 @@ export class ListarSupervisorComponent implements OnInit {
     })
   }//buscarTodosSupervisores
 
+  //captura qual o id do supervisor que deve ser deletado
   idSelecionado(id_supervisor:any){
     this.idSupervisorExclusao = id_supervisor
   }
 
+  //dispara a função para excluir o supervisor do banco de dados
   excluirSupervisor(){
     this.supervisorService.deletarSupervisor(this.idSupervisorExclusao).subscribe({
       complete: () => {
@@ -66,5 +70,4 @@ export class ListarSupervisorComponent implements OnInit {
       error: () => this.supervisorService.mensagem("Erro ao deletar o supervisor")
     })
   }//excluirsupervisor
-
 }

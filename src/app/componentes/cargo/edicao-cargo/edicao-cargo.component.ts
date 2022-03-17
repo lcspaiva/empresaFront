@@ -24,12 +24,15 @@ export class EdicaoCargoComponent implements OnInit {
     this.mostrarUmCargo();
   }
 
+  //função para preencher os dados do objeto do cargo nos campos para serem editados
+  //para tal fazemos uma requisição ao banco referente aos dados vinculados àquele id
   mostrarUmCargo(){
     this.cargoService.mostrarUmCargo(this.cargo.id_cargo).subscribe(resultado => {
       this.cargo = resultado;
     })
   }
 
+  //função para enviar ao backend os dados para serem atualizados no registro cujo id é igual
   editarCargo(){
     this.cargoService.editarCargo(this.cargo).subscribe({
       complete: () => this.cargoService.mensagem("Cargo editado com sucesso."),

@@ -33,6 +33,7 @@ export class CadastrarFuncionarioCargolessComponent implements OnInit {
     this.location.back()
   }
 
+  //faz o cadastro do novo funcionario no banco de dados
   cadastrarFuncionario(){
     this.funcionarioService.cadastraFuncSemCargo(this.funcionario).subscribe(resposta => {
       let funcionarioCadastrado:Funcionario = resposta
@@ -42,6 +43,7 @@ export class CadastrarFuncionarioCargolessComponent implements OnInit {
       })
   }
 
+  //função para tratar o envio de uma foto, essa função envia a foto diretamente ao banco
   uparFoto(event:any){
     if(event.target.files && event.target.files[0]){
       let dest = 2

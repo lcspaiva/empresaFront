@@ -21,6 +21,7 @@ export class CadastroCargoComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  //função para fazer o cadastro de um novo cargo, para tal enviamos um objeto contendo os dados no formato do modelo criado no arquivo de modelo
   cadastrarCargo(){
     this.cargoService.cadastrarCargo(this.cargo).subscribe(resultado => {
       this.cargoService.mensagem("Novo cargo cadastrado")
