@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="px-2">
+    <div class="card-body mt-4 text-center">
+      <h5 class="fs-1">Editar Dados Cadastrais do Supervisor</h5>
+    </div>
+    <hr>
+
+    <div class="card-body">
+      <form>
+        <div class="row">
+          <div class="col-8">
+            <div class="mb-4">
+              <label class="form-label col-form-label-lg mb-0">Nome do Supervisor</label>
+              <input type="text" [(ngModel)]="supervisor.su_nome"
+                class="form-control form-control-lg border-warning rounded-pill" name="su_nome">
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label col-form-label-lg mb-0">Setor do Supervisor</label>
+              <input type="text" [(ngModel)]="supervisor.su_setor"
+                class="form-control form-control-lg border-warning rounded-pill" name="su_setor">
+            </div>
+          </div> <!-- col -->
+          <div class="col-4">
+            <!-- [src]="sanitize(supervisor.su_foto)" -->
+
+              <img *ngIf="supervisor.su_foto == undefined" src="assets/imagens/placeholder.png" width="200px" class="img-thumbnail">
+              <img *ngIf="supervisor.su_foto != undefined" src="{{supervisor.su_foto}}" width="200px" class="img-thumbnail">
+
+            </div> <!-- col -->
+        </div> <!-- .row -->
+
+        <div class="mb-3">
+          <label class="form-label col-form-label-lg mb-0">Foto Atual do Supervisor</label>
+          <input type="text" class="form-control form-control-lg border-warning rounded-pill" readonly
+            [(ngModel)]="supervisor.su_foto" name="su_foto">
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label col-form-label-lg mb-0">Foto do Supervisor</label>
+          <input type="file" (change)="uparFoto($event)" class="form-control form-control-lg border-warning rounded-pill" name="su_foto">
+        </div>
+
+        <div class="text-center">
+          <button (click)="editarFunc()" class="btn btn-warning">Editar</button>
+          <button type="reset" class="btn btn-dark mx-3">Limpar</button>
+          <button (click)="voltarPag()" class="btn btn-dark">Voltar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

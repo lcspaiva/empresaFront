@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="card">
+    <div class="card-body">
+      <div class="text-center">
+        <h5 class="card-title fs-2">Lançamento de Pagamento</h5>
+        <hr>
+      </div>
+      <form>
+        <div class="mb-3">
+          <label class="form-label col-form-label-lg mb-0">Descrição do Pagamento</label>
+          <input type="text" class="form-control form-control-lg border-warning rounded-pill" [(ngModel)]="pagamento.pa_descricao" name="pa_descricao">
+        </div>
+        <div class="mb-3">
+          <label class="form-label col-form-label-lg mb-0">Data do Lançamento</label>
+          <input type="date" class="form-control form-control-lg border-warning rounded-pill" [(ngModel)]="pagamento.pa_lancamento" name="pa_lancamento">
+        </div>
+        <div class="mb-3">
+          <label class="form-label col-form-label-lg mb-0">Valor</label>
+          <input type="text" currencyMask class="form-control form-control-lg border-warning rounded-pill" [(ngModel)]="pagamento.pa_valor" name="pa_valor" [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', align: 'left' }">
+        </div>
+        <div class="mb-3">
+          <label class="form-label col-form-label-lg mb-0">Status</label>
+          <input type="text" class="form-control form-control-lg border-warning rounded-pill" readonly value="PENDENTE" [(ngModel)]="pagamento.pa_categoria" name="pa_categoria">
+        </div>
+      </form>
+      <div>
+        <button (click)="cadastrarPagamento()" class="btn btn-warning mx-4">Cadastrar</button>
+        <button routerLink="/pagamentoFuncionario/{{id_funcionario}}" class="btn btn-dark"> Cancelar</button>
+      </div>
+      <hr>
+    </div>
+  </div>

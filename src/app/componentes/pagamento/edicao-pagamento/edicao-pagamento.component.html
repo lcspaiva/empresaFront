@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="card">
+    <div class="card-body">
+      <div class="text-center mt-1">
+        <h5 class="card-title fs-2">Alterar Dados do Pagamento</h5>
+      </div>
+      <hr>
+      <form>
+        <div class="mb-3">
+          <label class="form-label col-form-label-lg mb-0">Descrição do Pagamento</label>
+          <input type="text" class="form-control form-control-lg border-warning rounded-pill" [(ngModel)]="pagamento.pa_descricao" name="pa_descricao">
+        </div>
+        <div class="mb-3">
+          <label class="form-label col-form-label-lg mb-0">Data do Lançamento</label>
+          <input type="date" class="form-control form-control-lg border-warning rounded-pill" [(ngModel)]="pagamento.pa_lancamento" name="pa_lancamento">
+        </div>
+        <div class="mb-3">
+          <label class="form-label col-form-label-lg mb-0">Valor</label>
+          <input type="text" currencyMask class="form-control form-control-lg border-warning rounded-pill" [(ngModel)]="pagamento.pa_valor" name="pa_valor" [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', align: 'left' }">
+        </div>
+        <div class="mb-3">
+          <label class="form-label col-form-label-lg mb-0">Status</label>
+          <input type="text" class="form-control form-control-lg border-warning rounded-pill" readonly value="PENDENTE" [(ngModel)]="pagamento.pa_categoria" name="pa_categoria">
+        </div>
+      </form>
+      <div class="text-center">
+        <button (click)="editarPagamento()" class="btn btn-warning mx-4">Salvar</button>
+        <button (click)="voltarPag()" class="btn btn-dark"> Cancelar</button>
+      </div>
+      <hr>
+    </div>
+  </div>

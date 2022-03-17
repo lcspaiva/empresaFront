@@ -1,0 +1,63 @@
+<div class="container" style="height: 100%;">
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title fs-2 text text-center">Lista de Pagamentos</h5>
+      <hr>
+      <h5 class="card-title fs-5 text text-center">funcionário: {{nome_funcionario}}</h5>
+
+      <hr>
+      <div style="height: 300px; overflow: auto;">
+        <table class="table text-center">
+          <thead>
+            <tr>
+              <th scope="col">Código</th>
+              <th scope="col">Descrição</th>
+              <th scope="col">Data de Lançamento</th>
+              <th scope="col">Valor</th>
+              <th scope="col">Status</th>
+              <th scope="col">Pagar/Cancelar</th>
+              <th scope="col">Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let pagamento of pagamentos">
+              <th scope="row">{{pagamento.codigo}}</th>
+              <td>{{pagamento.pa_descricao}}</td>
+              <td>{{pagamento.pa_lancamento | date: 'dd/MM/yyyy'}}</td>
+              <td>{{pagamento.pa_valor | currency: 'BRL'}}</td>
+              <td>{{pagamento.pa_categoria}}</td>
+              <td><button (click)="efetuarPagamento(pagamento, pagamento.codigo)" class="btn btn-warning mx-2" *ngIf="pagamento.pa_categoria == 'PENDENTE'">P</button>
+              <button (click)="cancelarPagamento(pagamento, pagamento.codigo)" class="btn btn-danger" *ngIf="pagamento.pa_categoria == 'PENDENTE'" >C</button></td>
+              <td><i routerLink="/editarPagamento/{{pagamento.codigo}}/{{id_funcionario}}" class="fas fa-edit"></i>
+                <i data-bs-toggle="modal" data-bs-target="#staticBackdrop" class="fas fa-trash-alt mx-2" (click)="pegaIdExclusao(pagamento.codigo)"></i>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="text-center">
+          <button routerLink="/cadastrarPagamento/{{id_funcionario}}" class="btn btn-warning mx-4">Cadastrar Pagamento</button>
+          <button routerLink="/listaGeralFuncionarios" class="btn btn-dark">Voltar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- modal de exclusão -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Exclusão de Pagamento</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        O pagamento selecionado será excluído. Tem certeza que deseja proseguir?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-warning" (click)="excluirPagamento()" data-bs-dismiss="modal">Excluir</button>
+      </div>
+    </div>
+  </div>
+</div>

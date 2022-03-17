@@ -1,0 +1,36 @@
+<div class="container-md" style="height: 85%;">
+	<div class="">
+		<div class="card-body mt-1 text-center">
+			<h5 class="fs-1">Editar dados do Cargo</h5>
+      <hr>
+			<p class="">
+        Os cargos remetem às atividades existentes na nossa cadeia de produção.
+        <br>
+        As atribuições dessas atividades estão diretemante relacionadas à qualidade de nosso produtos.
+        <br>
+        Edite aqui os dados acerca do cargo, de forma que as atribuições do colaborador atrelado correspondam às informações aqui presentes. </p>
+      </div>
+      <hr>
+
+		<div class="card-body">
+			<form>
+				<div class="mb-4">
+					<label class="form-label col-form-label-lg mb-0">Nome do cargo</label>
+					<input type="text" class="form-control form-control-lg border-warning rounded-pill" [(ngModel)]="cargo.car_nome" name="car_nome">
+				</div>
+
+				<div class="mb-4">
+					<label class="form-label col-form-label-lg mb-0">Descrição do cargo</label>
+					<input type="text" class="form-control form-control-lg border-warning rounded-pill" [(ngModel)]="cargo.car_descricao" name="car_descricao">
+				</div>
+        <hr>
+        <div class="text-center">
+          <button (click)="editarCargo()" class="btn btn-warning">Editar</button>
+          <button type="reset" class="btn btn-dark mx-3">Limpar</button>
+          <button routerLink="/cargos" class="btn btn-dark">Voltar</button>
+        </div>
+
+			</form>
+		</div>
+	</div>
+</div>

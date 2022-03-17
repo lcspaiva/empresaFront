@@ -1,0 +1,32 @@
+<div class="container" style="height: 90%;">
+	<div class="card px-2">
+		<div class="card-body mt-4 text-center">
+			<h5 class="fs-1">Cadastro de novo Cargo</h5>
+			<p class="mx-2">
+        Os cargos remetem às atividades existentes na nossa cadeia de produção.
+        <br>
+        As atribuições dessas atividades estão diretemante relacionadas à qualidade de nosso produtos.
+        <br>
+        Insira um novo cargo, junto com as atribuições que serão demandadas
+      </p>
+		</div>
+		<div class="card-body">
+			<form>
+				<div class="mb-4">
+					<label class="form-label col-form-label-lg mb-0">Nome do cargo</label>
+					<input type="text" class="form-control form-control-lg border-warning rounded-pill" [(ngModel)]="cargo.car_nome" name="car_nome">
+				</div>
+
+				<div class="mb-4">
+					<label class="form-label col-form-label-lg mb-0">Descrição do cargo</label>
+					<input type="text" class="form-control form-control-lg border-warning rounded-pill" [(ngModel)]="cargo.car_descricao" name="car_descricao">
+				</div>
+          <div class="text-center">
+            <button (click)="cadastrarCargo()" class="btn btn-warning">Cadastrar</button>
+            <button type="reset" class="btn btn-dark mx-3">Limpar</button>
+            <button routerLink="/cargos" class="btn btn-dark">Voltar</button>
+          </div>
+			</form>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,62 @@
+<div class="container">
+  <div class="row">
+    <div class="col-7">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title fs-2 text text-center">Dados do Funcionário</h5>
+          <form>
+            <div class="mb-3">
+              <label class="form-label col-form-label-lg mb-0">Nome do Funcionario</label>
+              <input type="text" readonly class="form-control form-control-lg border-warning rounded-pill"
+                [(ngModel)]="funcionario.func_nome" name="func_nome">
+            </div>
+            <div class="mb-3">
+              <label class="form-label col-form-label-lg mb-0">Cidade do Funcionario</label>
+              <input type="text" readonly class="form-control form-control-lg border-warning rounded-pill"
+                [(ngModel)]="funcionario.func_cidade" name="func_cidade">
+            </div>
+            <button routerLink="/listaGeralFuncionarios" class="btn btn-dark mx-3">Cancelar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-5">
+      <div class="card">
+        <div class="mt-3">
+          <h5 class="card-title fs-2 text text-center">Dados do Cargo</h5>
+          <div class="card-body">
+            <label class="form-label col-form-label-lg mb-0">Cargo do Funcionário:
+              {{cargo.id_cargo}}</label>
+            <div class="mb-3">
+              <label class="form-label col-form-label-lg mb-0">Nome do Cargo</label>
+              <input type="text" readonly class="form-control form-control-lg border-warning rounded-pill"
+                [(ngModel)]="cargo.car_nome" name="car_nome">
+            </div>
+            <div class="mb-3">
+              <label class="form-label col-form-label-lg mb-0">Descrição do Cargo</label>
+              <input type="text" readonly class="form-control form-control-lg border-warning rounded-pill"
+                [(ngModel)]="cargo.car_descricao" name="car_descricao">
+            </div>
+            <hr>
+            <h5 class="card-title my-1 fs-5"> Escolha um novo cargo para o funcionário:</h5>
+            <div class="card-body">
+              <select [(ngModel)]="cargoEscolhido" name="cargoEscolhido" (ngModelChange)="mostrarCargo()"
+                class="form-select form-select-md border-warning rounded-pill mb-3">
+                <option *ngFor="let vaga of cargosDisponiveis" [ngValue]="vaga">
+                  {{vaga.car_nome}} - {{vaga.car_descricao}}
+                </option>
+              </select>
+              <button (click)="atribuirCargo()" class="btn btn-warning mx-3">Salvar</button>
+            </div>
+            <hr>
+            <h5 class="card-title fs-5">Desvincular o Funcionário do Cargo</h5>
+            <div class="card-body">
+              <button (click)="deixarFuncionarioSemCargo()" class="btn btn-warning">Confirmar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

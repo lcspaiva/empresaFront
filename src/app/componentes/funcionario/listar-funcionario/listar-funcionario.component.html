@@ -1,0 +1,58 @@
+<div class="container" style="height: 85%;">
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title fs-2 text text-center">Funcionários Alocados</h5>
+      <h5 class="card-title fs-5 text text-center">Cargo: {{cargo.car_nome}}</h5>
+      <h5 class="card-title fs-5 text text-center">Descrição: {{cargo.car_descricao}}</h5>
+      <hr>
+      <div style="height: 300px; overflow: auto;">
+        <table class="table text-center">
+          <thead>
+            <tr>
+              <th scope="col">Código</th>
+              <th scope="col">Nome</th>
+              <th scope="col">Cidade</th>
+              <th>Desvincular Funcionário</th>
+              <th scope="col">Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let func of funcionarios">
+              <th scope="row">{{func.id_funcionario}}</th>
+              <td>{{func.func_nome}}</td>
+              <td>{{func.func_cidade}}</td>
+              <td><i (click)="desvincular(func.id_funcionario, func)" class="fa-solid fa-circle-minus"></i></td>
+              <td><i routerLink="/edicaoFuncionario/{{func.id_funcionario}}" class="fas fa-edit"></i>
+                <i data-bs-toggle="modal" data-bs-target="#staticBackdrop" (click)="pegaIdExclusao(func.id_funcionario)"
+                  class="fas fa-trash-alt mx-2"></i>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="text-center mt-2">
+        <button routerLink="/cadastroFuncionario/{{id_cargo}}" class="btn btn-warning">Cadastrar Funcionario</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- modal de exclusão -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Exclusão de Funcionário</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        O funcionário selecionado será excluído. Todos os dados referentes aos pagamentos realizados para ele também serão devidamente apagados. Tem certeza que deseja proseguir?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-warning" (click)="excluirFuncionario()" data-bs-dismiss="modal">Excluir</button>
+      </div>
+    </div>
+  </div>
+</div>

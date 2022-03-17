@@ -1,0 +1,30 @@
+<div class="container">
+  <!-- -->
+  <div class="card-body text-center mt-2">
+    <h5 class="card-tittle fs-1"> Nossos Colaboradores</h5>
+    <hr>
+  </div>
+
+  <div class="row d-flex justify-content-evenly">
+    <div class="card col-3 text-center" *ngFor="let supervisor of supervisores">
+      <div><img src="{{supervisor.sup_foto}}" class="img" alt=""></div>
+      <div class="info">
+        <span>{{supervisor.sup_nome}}</span>
+        <p>Supervisor</p>
+        <p>{{supervisor.sup_cargo}}</p>
+      </div>
+      <button class="btn btn-warning" routerLink="/editarSupervisor/{{supervisor.id_supervisor}}">Editar</button>
+    </div>
+
+    <div class="card col-3 text-center" *ngFor="let funcionario of funcionarios">
+      <div><img src="{{funcionario.func_foto}}" class="img" alt=""></div>
+      <div class="info">
+        <span>{{funcionario.func_nome}}</span>
+        <p>Funcionario</p>
+        <p>{{funcionario.car_nome}}</p>
+      </div>
+      <button class="btn btn-warning" routerLink="/editarSupervisor/{{funcionario.id_funcionario}}">Editar</button>
+    </div>
+
+  </div> <!-- row -->
+</div> <!-- container -->

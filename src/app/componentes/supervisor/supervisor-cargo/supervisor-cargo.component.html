@@ -1,0 +1,83 @@
+<div class="container" style="height: 90%;">
+  <div class="row">
+    <div class="col-7">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title fs-2 text text-center">Dados do Supervisor</h5>
+          <form>
+            <div class="mb-3">
+              <label class="form-label col-form-label-lg mb-0">Nome do Supervisor</label>
+              <input type="text" readonly class="form-control form-control-lg border-warning rounded-pill"
+                [(ngModel)]="supervisor.su_nome" name="su_nome">
+            </div>
+            <div class="mb-3">
+              <label class="form-label col-form-label-lg mb-0">Setor do Supervisor</label>
+              <input type="text" readonly class="form-control form-control-lg border-warning rounded-pill"
+                [(ngModel)]="supervisor.su_setor" name="su_setor">
+            </div>
+            <button routerLink="/cargos" class="btn btn-dark mx-3">Cancelar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-5">
+      <div class="card">
+        <div class="mt-3">
+          <h5 class="card-title fs-2 text text-center">Dados do Cargo</h5>
+          <div class="card-body">
+            <label class="form-label col-form-label-lg mb-0">Código do Cargo:
+              {{cargo.id_cargo}}</label>
+            <div class="mb-3">
+              <label class="form-label col-form-label-lg mb-0">Título do Cargo</label>
+              <input type="text" readonly class="form-control form-control-lg border-warning rounded-pill"
+                [(ngModel)]="cargo.car_nome" name="su_nome">
+            </div>
+            <div class="mb-3">
+              <label class="form-label col-form-label-lg mb-0">Descrição das atividades:</label>
+              <input type="text" readonly class="form-control form-control-lg border-warning rounded-pill"
+                [(ngModel)]="cargo.car_descricao" name="su_formacao">
+            </div>
+            <hr>
+            <div class="" *ngIf="isCargo == false">
+              <h5 class="card-title fs-5"> Vincule um novo Cargo a esse Supervisor:</h5>
+              <select  [(ngModel)]="cargoEscolhido" name="supervisorEscolhido" (ngModelChange)="mostrarSupervisor()"
+                class="form-select form-select-md border-warning rounded-pill mb-3">
+                <option *ngFor="let cargo of cargosLivres" [ngValue]="cargo">
+                  {{cargo.id_cargo}} - {{cargo.car_nome}}
+                </option>
+              </select>
+              <button (click)="associarCargoSupervisor()" class="btn btn-warning mx-3">Atribuir</button>
+            </div>
+            <hr>
+            <h5 class="card-title fs-5">Deixar o Supervisor atual sem cargo?</h5>
+            <div class="card-body">
+              <button data-bs-toggle="modal" data-bs-target="#staticBackdrop" class="btn btn-warning">Confirmar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- modal de confirmação -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Exclusão de Funcionário</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        O supervisor selecionado será liberado desse cargo.
+        Atenção! A partir de agora o cargo não está sendo supervionado.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-warning" data-bs-dismiss="modal"
+          (click)="deixarCargoSemSupervisor()">Confirmar</button>
+      </div>
+    </div>
+  </div>
+</div>

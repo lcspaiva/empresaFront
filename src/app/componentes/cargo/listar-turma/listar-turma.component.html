@@ -1,0 +1,78 @@
+<div class="container" style="height: 85%">
+  <div class="card">
+    <div class="card-body">
+      <div class="card-body mt-1">
+        <h5 class="fs-1 text text-center">Cargos Disponíveis</h5>
+        <hr>
+        <p class="mx-2 text-center">
+          Os cargos remetem às atividades existentes na nossa cadeia de produção.
+          <br>
+          As atribuições dessas atividades estão diretemante relacionadas à qualidade de nosso produtos.
+          <br>
+          Visualize as atribuições e seus respectivos supervisores. Supervisores esses responsáveis por garantir que as funções estão sendo desempenhandadas de forma correta </p>
+      </div>
+      <hr>
+
+      <div style="height: 300px; overflow: auto;">
+      <table class="table mb-5">
+        <thead class="text-center">
+          <tr>
+            <th scope="col">Código</th>
+            <th scope="col">Cargo</th>
+            <th scope="col">Descrição</th>
+            <th scope="col">Colaboradores</th>
+
+            <th scope="col">Nome do Supervisor</th>
+            <th scope="col">Setor do Supervisor</th>
+            <th scope="col">Supervisor</th>
+            <th scope="col">Ações</th>
+          </tr>
+        </thead>
+        <tbody class="text-center justify-left">
+          <tr *ngFor="let cargo of cargos">
+            <td>{{cargo.id_cargo}}</td>
+            <td>{{cargo.car_nome}}</td>
+            <td>{{cargo.car_descricao}}</td>
+            <td><i routerLink="/listarFuncionario/{{cargo.id_cargo}}" class="fa-solid fa-user"></i></td>
+            <td>{{cargo.su_nome}}</td>
+            <td>{{cargo.su_setor}}</td>
+            <td><i routerLink="/cargoSupervisor/{{cargo.id_cargo}}" class="fa-solid fa-chalkboard-user"></i></td>
+            <td><i routerLink="/edicaoCargo/{{cargo.id_cargo}}" class="fas fa-edit" ></i>
+
+              <!-- <button type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop"> <i class="fas fa-trash-alt mx-2"></i> </button> -->
+
+              <i data-bs-toggle="modal" data-bs-target="#staticBackdrop" class="fas fa-trash-alt mx-2" (click)="pegaIdExclusao(cargo.id_cargo)" ></i>
+
+              <!-- <i routerLink="/exclusaoCargo/{{cargo.id_cargo}}" class="fas fa-trash-alt  mx-2" ></i> -->
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="text-center">
+      <button class="btn btn-warning mx-5 my-2" routerLink="/cadastroCargo">Adicionar Cargo</button>
+    </div>
+    </div>
+  </div>
+
+  <br><br>
+</div>
+
+<!-- modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Exclusão de Cargo</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        O Cargo atualmente selecionado será excluído, os funcionarios atualmente alocados nesse cargo serão desvinculados e aparecerão sem qualquer atribuição na empresa.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-warning" (click)="excluirCargo()" data-bs-dismiss="modal">Excluir</button>
+      </div>
+    </div>
+  </div>
+</div>

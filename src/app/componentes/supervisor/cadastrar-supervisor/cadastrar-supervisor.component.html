@@ -1,0 +1,50 @@
+<div class="container" style="height: 87%">
+  <div class="card px-2">
+    <div class="card-body mt-4 text-center">
+      <h5 class="card-title fs-1">Cadastro Supervisor</h5>
+      <hr>
+      <p class="mx-2 fs-5">
+
+        Em nossa empresa os supervisores detêm a importantíssima tarefa de controlar a qualidade das ativades
+        desempenhadas
+        de modo que tenhamos um processo eficiente e de qualidade.
+        <br>
+        Algo que nos diferencia da concorrência.
+        Dessa forma podemos entregar um produto de qualidade e sem compremeter a felicidade de nossos colaboradores
+        <br>
+      </p>
+      <hr>
+      <form>
+        <div class="row">
+          <div class="col-7">
+            <div class="mb-3">
+              <label class="form-label col-form-label-lg mb-0">Nome do Supervisor</label>
+              <input type="text" class="form-control form-control-lg border-warning rounded-pill"
+                [(ngModel)]="supervisor.su_nome" name="su_nome">
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label col-form-label-lg mb-0">Setor do Supervisor</label>
+              <input type="text" class="form-control form-control-lg border-warning rounded-pill"
+                [(ngModel)]="supervisor.su_setor" name="su_setor">
+            </div>
+
+            <button (click)="cadastrarSupervisor()" class="btn btn-warning ">Cadastrar</button>
+            <button routerLink="/listarSupervisor" class="btn btn-dark mx-3">Cancelar</button>
+          </div>
+          <div class="col-4">
+            <div>
+              <img src="assets/imagens/placeholder.png" style="border: 1px solid black" width="135px" alt="">
+            </div>
+            <div class="mb-3">
+              <label class="form-label col-form-label-lg mb-0">Foto do supervisor</label>
+              <input type="file" class="form-control form-control-lg border-warning rounded-pill"
+                [disabled]="!isSupervisorCadastrado" (change)="uparFoto($event)" name="su_foto">
+            </div>
+          </div>
+        </div>
+
+      </form>
+      <hr>
+    </div>
+  </div>

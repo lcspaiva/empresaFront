@@ -1,0 +1,61 @@
+<div class="container" style="height: 95%;">
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title fs-2 text text-center">Supervisores</h5>
+      <hr>
+      <div style="height: 300px; overflow: auto;">
+        <table class="table text text-center">
+          <thead>
+            <tr>
+              <th scope="col">Código</th>
+              <th scope="col">Nome do Supervisor</th>
+              <th scope="col">Setor</th>
+              <th scope="col">Nome do Cargo</th>
+              <th scope="col">Descrição do Cargo</th>
+              <th scope="col">Supervisão</th>
+              <th scope="col">Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let supervisor of supervisores">
+              <th scope="row">{{supervisor.id_supervisor}}</th>
+              <td>{{supervisor.su_nome}}</td>
+              <td>{{supervisor.su_setor}}</td>
+              <td>{{supervisor.car_nome}}</td>
+              <td>{{supervisor.car_descricao}}</td>
+
+              <td><i routerLink="/supervisorCargo/{{supervisor.id_supervisor}}" class="fa-solid fa-clipboard"></i></td>
+              <td><i routerLink="/editarSupervisor/{{supervisor.id_supervisor}}" class="fas fa-edit"></i>
+                <i data-bs-toggle="modal" data-bs-target="#staticBackdrop" class="fas fa-trash-alt mx-2" (click)="idSelecionado(supervisor.id_supervisor)"></i>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div> <!-- table -->
+
+    </div>
+    <div class="text-center">
+      <button routerLink="/cadastrarSupervisor" class="btn btn-warning mx-4">Cadastrar Supervisor</button>
+    </div> <!-- botoes -->
+  </div>
+</div>
+
+
+<!-- modal de exclusão -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Exclusão de Funcionário</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        O supervisor selecionado será excluído. Caso ele tenha algum cargo vinculado esse ficará sem nenhum supervisor. Tem certeza que deseja prosseguir?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cancelar</button>
+        <button (click)="excluirSupervisor()" type="button" class="btn btn-warning" data-bs-dismiss="modal" >Excluir</button>
+      </div>
+    </div>
+  </div>
+</div>

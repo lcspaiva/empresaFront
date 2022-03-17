@@ -1,0 +1,39 @@
+<div class="container" style="height: 105%;">
+  <div class="card px-2">
+    <div class="card-body mt-2 text-center">
+      <h5 class="card-title fs-1">Cadastro Funcionário</h5>
+      <hr>
+      <form>
+        <div class="row">
+          <div class="col-7">
+            <div class="mb-3">
+              <label class="form-label col-form-label-lg mb-0">Nome do Funcionário</label>
+              <input type="text" class="form-control form-control-lg border-warning rounded-pill"
+                [(ngModel)]="funcionario.func_nome" name="su_nome">
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label col-form-label-lg mb-0">Cidade do Funcionário</label>
+              <input type="text" class="form-control form-control-lg border-warning rounded-pill"
+                [(ngModel)]="funcionario.func_cidade" name="su_setor">
+            </div>
+
+            <button (click)="cadastrarFuncionario()" class="btn btn-warning ">Cadastrar</button>
+            <button (click)="voltar()" class="btn btn-dark mx-3">Cancelar</button>
+          </div>
+          <div class="col-4">
+            <div>
+              <img src="assets/imagens/placeholder.png" style="border: 1px solid black" width="135px" alt="">
+            </div>
+            <div class="mb-3">
+              <label class="form-label col-form-label-lg mb-0">Foto do funcionário</label>
+              <input type="file" class="form-control form-control-lg border-warning rounded-pill"
+                [disabled]="!isFuncionarioCadastrado" (change)="uparFoto($event)" name="func_foto">
+            </div>
+          </div>
+        </div>
+
+      </form>
+      <hr>
+    </div>
+  </div>
